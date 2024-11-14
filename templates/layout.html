@@ -1,0 +1,97 @@
+{% load static tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" href="{% static 'images/favicon.ico' %}">
+	</head>
+
+	<body class="flex flex-col h-screen w-full">
+		<header class="w-full bg-rose-800 text-white">
+            <nav class="flex gap-1 items-center justify-between">
+                <a href="{% url 'blogs:home' %}">
+                    <img 
+                        src="{% static 'images/logo.png' %}" 
+                        alt="logo"
+                        class="h-16 w-16"
+                    >
+                </a>
+                <ul class="list-style-none flex gap-2 items-center">
+                    <li>
+                        <a>New</a>
+                    </li>
+                    <li>
+                         <a>Blogs</a>
+                    </li>
+                    <li>
+                        <a>Users</a>
+                    </li>
+                </ul>
+                <ul class="list-style-none flex items-center gap-2">
+                    <li class="hover:scale-125 transition duration-500">
+                        <a href="{% url 'users:register' %}">Register</a>
+                    </li>
+                    <li class="hover:scale-125 transition duration-500">
+                        <a href="{% url 'users:login' %}">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="flex-1">
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="bg-rose-800 text-white p-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 xs:grid-cols-1 lg:grid-cols-4 place-content-center sm:gap-4">
+               <div class="flex items-center gap-2">
+                     <img 
+                        src="{% static 'images/logo.png' %}" 
+                        alt="logo"
+                        class="h-16 w-16"
+                    >
+                    <p class="font-light">
+                       Create, publish, blogs with ease, with blogger
+                    </p>
+               </div>
+                <div class="flex items-center flex-col">
+                    <h3 class="font-semibold">Quick Links</h3>
+                    <ul class="flex flex-col items-center list-style-none">
+                        <li>Home</li>
+                        <li>About</li>
+                        <li>Contact</li>
+                        <li>Support</li>
+                    </ul>
+                </div>
+                <div class="flex items-center flex-col">
+                    <h3 class="font-semibold">Information</h3>
+                    <ul class="flex flex-col items-center list-style-none">
+                        <li>Privacy policy</li>
+                        <li>Terms & conditions</li>
+                        <li>Help</li>
+                        <li>Consents</li>
+                    </ul>
+                </div>
+                <div class="flex items-center flex-col">
+                    <h3 class="font-semibold">
+                        Subscribe to our newsletter
+                    </h3>
+                    <form class="border-2 border-white rounded-md flex">
+                        <label for="email" class="hidden">Email</label>
+                        <input type="text" class="bg-transparent p-2 border-white rounded-l-md w-full border-none outline-none ring-0 ring-offset-0" id="email">
+                        <button class="bg-white text-rose-600 p-1 w-fit border-none outline-none h-full px-2 rounded-r-md ml-0">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="w-full bg-white my-4">
+            <div class="w-full flex items-center justify-center">
+                <span class="text-center">
+                    @Copyright Blogger 2024
+                </span>
+            </div>
+        </footer>
+	</body>
+</html>

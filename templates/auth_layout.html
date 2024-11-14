@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static tailwind_tags %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   {% tailwind_css %}
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body class="flex w-full h-screen items-center flex-1">
+<div class="w-full lg:w-1/2 h-full flex items-center justify-center flex-col">
+    <div class="flex items-center my-4">
+        <img src="{% static 'images/logo.png' %}" alt="logo" class="w-16 h-16">
+        <h2 class="font-bold text-rose-600 text-3xl">Blogger</h2>
+    </div>
+    <div class="flex flex-col w-3/4">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+<div class="w-1/2 h-full hidden lg:block">
+    <img src="{% static 'images/blog.jpg' %}" alt="blog" class="w-full h-full object-cover">
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'auth_layout.html' %}
+{% block title %}Register new user{% endblock %}
+{% block content %}
+    <section class="shadow-2xl shadow-rose-800 p-4 rounded-md">
+    <h3 class="text-3xl my-2">Register here</h3>
+        <form action="{% url 'users:register' %}" class="p-4" method="post">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="id_full_name" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                <input
+                    type="text"
+                    id="id_full_name"
+                    name="full_name"
+                    class="border border-gray-300 rounded px-4 py-2 w-full" {{ form.full_name.as_p | safe }}
+                >
+            </div>
+             <div class="mb-4">
+                <label for="id_email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                <input
+                    type="text"
+                    id="id_email"
+                    name="email"
+                    class="border border-gray-300 rounded px-4 py-2 w-full" {{ form.email.as_p | safe }}
+                >
+            </div>
+            <div class="mb-4">
+                <label for="id_password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+                <input
+                    type="password"
+                    id="id_password"
+                    name="password"
+                    class="border border-gray-300 rounded px-4 py-2 w-full" {{ form.password.as_p | safe }}
+                >
+            </div>
+            <div class="mb-4">
+                <label for="id_confirm_password" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password:</label>
+                <input
+                    type="password"
+                    id="id_confirm_password"
+                    name="confirm_password"
+                    class="border border-gray-300 rounded px-4 py-2 w-full" {{ form.confirm_password.as_p | safe }}
+                >
+            </div>
+             <div class="mb-4">
+                <label
+                        for="id_avatar"
+                        class="w-full rounded-md h-36 bg-rose-50 p-4 flex items-center justify-center border border-rose-600 cursor-pointer"
+                >Upload Picture</label>
+                <input
+                    type="file"
+                    id="id_avatar"
+                    name="avatar"
+                    class="hidden"
+                >
+                 {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="User Avatar" class="mt-4 w-36 h-36 rounded-full">
+                {% endif %}
+            </div>
+            <button class="border-none outline-none bg-rose-800 text-white py-2 rounded-lg w-full">Register</button>
+            <div class="flex items-center justify-center mt-2">
+                <a href="{% url 'users:login' %}" class="text-lg">
+                    Already have an account? <span class="text-rose-600">Login</span>
+                </a>
+            </div>
+        </form>
+    </section>
+{% endblock %}
