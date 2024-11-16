@@ -1,1 +1,3 @@
-# Django Bloggin Application
+# Django Blogging Application
+
+For testing and development purposes only
